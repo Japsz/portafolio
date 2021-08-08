@@ -1,0 +1,17 @@
+@import url(//fonts.googleapis.com/css?family=Amatic+SC);
+@import url(//fonts.googleapis.com/css?family=Poiret+One);
+
+// 2. Include any default variable overrides here
+$primary: #086375 !default;
+$secondary: #FFBF46 ;
+$danger: #EF767A;
+$warning: #FFE347;
+$font-family-base: 'Poiret One';
+$font-size-base: 2rem;
+$link-color: $primary;
+$body-bg: #ede6f2b7;
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+$font-logo: 'Amatic SC';
