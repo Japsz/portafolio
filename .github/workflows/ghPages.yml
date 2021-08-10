@@ -41,6 +41,7 @@ jobs:
       - name: See folder files
         run: ls ./front/public
       - name: Deploy to Github Pages
+        uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
