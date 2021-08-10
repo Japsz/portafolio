@@ -26,6 +26,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: Go to Frontend folder
+      run: cd front
     - name: Cache node modules
       uses: actions/cache@v2
       env:
