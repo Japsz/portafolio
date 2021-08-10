@@ -4,6 +4,9 @@
 name: Github Pages Deployment
 
 on: [push, pull_request]
+defaults:
+  run:
+    working-directory: ./front
 jobs:
   build:
 
@@ -11,13 +14,11 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [12.x, 14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v2
-    - name: Go to Frontend folder
-      run: cd front
     - name: Cache node modules
       uses: actions/cache@v2
       env:
@@ -42,7 +43,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: 'public'
+          source-directory: 'front/public'
           destination-github-username: 'Japsz'
           destination-repository-name: 'japsz.github.io'
           user-email: benjamin.meneses.14@sansano.usm.cl
