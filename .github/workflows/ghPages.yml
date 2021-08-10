@@ -24,6 +24,17 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}-
           ${{ runner.os }}-build-
           ${{ runner.os }}-
+    - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +%s)"
+    - name: Cache build
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-build
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: ~/front/public
+        key: ${{ env.cache-name }}
     - run: yarn
     - run: yarn build
   deploy:
@@ -31,14 +42,22 @@ jobs:
     environment: deployment
     runs-on: ubuntu-latest
     steps:
+      - name: Cache build
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-build
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/front/public
+          key: ${{ env.cache-name }}
       - name: See folder files
-        run: ls ./
+        run: ls ~/front/public
       - name: Deploy to Github Pages
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: './public'
+          source-directory: '~/front/public'
           destination-github-username: 'Japsz'
           destination-repository-name: 'japsz.github.io'
           user-email: benjamin.meneses.14@sansano.usm.cl
