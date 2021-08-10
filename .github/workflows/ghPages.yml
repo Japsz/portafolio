@@ -25,7 +25,7 @@ jobs:
         cache-name: cache-node-modules
       with:
         # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: ~/.npm
+        path: ~/.yarn
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-build-${{ env.cache-name }}-
@@ -38,14 +38,26 @@ jobs:
     environment: deployment
     runs-on: ubuntu-latest
     steps:
+    - name: Restore files
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: ~/.yarn
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
       - name: See folder files
-        run: ls ./front/public
+        run: ls ./public
       - name: Deploy to Github Pages
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: './front/public'
+          source-directory: './public'
           destination-github-username: 'Japsz'
           destination-repository-name: 'japsz.github.io'
           user-email: benjamin.meneses.14@sansano.usm.cl
