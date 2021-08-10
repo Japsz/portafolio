@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: See folder files
-        run: ls
+        run: ls ./
       - name: Deploy to Github Pages
         uses: cpina/github-action-push-to-another-repository@main
         env:
