@@ -40,7 +40,7 @@ const IndexPage = () => (
     </div>
     <div className="row">
       <div className="container px-5 pt-5 d-flex flex-column align-items-start">
-        <h2>Hello</h2>
+        <h2>Hello!</h2>
         <p className="text-primary">
           I'm Benjamín Meneses, born in Santiago, Chile. I've been doing FS Development since i learnt how to in 2015 while studying Computer Science at <a href="https://www.usm.cl/" target="_blank">UTFSM</a>.
           <div className="mt-2"/>
