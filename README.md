@@ -4,8 +4,12 @@ This mono-repo consists of:
 
 ## Frontend
 
-This project was created using React and the default starter for GatsbyJs. It has a customized version of Bootstrap 5 and also uses Firebase for some Features.
+Bootstrapped using React and the default starter for GatsbyJs. It also has a customized version of Bootstrap 5 and also uses Firebase for some Features.
 
 ## Backend
 
-This was created using NestJs CLI and implements a basic implementation with Firebase to handle chat features.
+Bootstrapped using NestJs CLI, it uses Firebase Realtime Database to handle chat features.
+
+## Continuous Delivery
+
+TODO
