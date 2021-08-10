@@ -25,8 +25,8 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
     - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +%s)"
+      id: date
+      run: echo "::set-output name=date::$(date +%s)"
     - name: Cache build
       uses: actions/cache@v2
       env:
