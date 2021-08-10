@@ -38,12 +38,13 @@ jobs:
     environment: deployment
     runs-on: ubuntu-latest
     steps:
+      - name: See folder files
+        run: ls ./front/public
       - name: Deploy to Github Pages
-        uses: Japsz/japsz.github.io@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: 'front/public'
+          source-directory: './front/public'
           destination-github-username: 'Japsz'
           destination-repository-name: 'japsz.github.io'
           user-email: benjamin.meneses.14@sansano.usm.cl
