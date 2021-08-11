@@ -15,7 +15,7 @@ jobs:
     - name: Cache node modules
       uses: actions/cache@v2
       env:
-        cache-name: cache-node-modules
+        cache-name: node-modules
       with:
         path: front/node_modules
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
@@ -31,9 +31,9 @@ jobs:
     - name: Deploy to Github Pages
       uses: dmnemec/copy_file_to_another_repo_action@main
       env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
       with:
-        source_file: 'front/public'
-        destination_repo: 'Japsz/japsz.github.io'
+        source_file: 'front/public/'
+        destination_repo: 'japsz/japsz.github.io'
         user_email: benjamin.meneses.14@sansano.usm.cl
-        user_name: 'Japsz'
+        user_name: 'japsz'
