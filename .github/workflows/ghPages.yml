@@ -25,7 +25,7 @@ jobs:
     - run: yarn
     - run: yarn build
     - name: Modify public folder permissions
-      run: chmod -R 755 public
+      run: chmod -R 755 ./public
     - run: ls -l
 
     - name: Deploy to Github Pages
@@ -33,7 +33,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
       with:
-        source_file: './public'
+        source_file: './'
         destination_repo: 'Japsz/japsz.github.io'
         user_email: benjamin.meneses.14@sansano.usm.cl
         user_name: 'Japsz'
