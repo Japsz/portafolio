@@ -24,9 +24,6 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}-
           ${{ runner.os }}-build-
           ${{ runner.os }}-
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +%s)"
     - name: Cache build
       uses: actions/cache@v2
       env:
@@ -34,14 +31,16 @@ jobs:
       with:
         # npm cache files are stored in `~/.npm` on Linux/macOS
         path: ~/front/public
-        key: ${{ env.cache-name }}
+        key: ${{ env.cache-name }}-${{ github.sha }}
     - run: yarn
     - run: yarn build
+    - run: ls ./public 
   deploy:
     needs: build
     environment: deployment
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Cache build
         uses: actions/cache@v2
         env:
@@ -49,9 +48,9 @@ jobs:
         with:
           # npm cache files are stored in `~/.npm` on Linux/macOS
           path: ~/front/public
-          key: ${{ env.cache-name }}
+          key: ${{ env.cache-name }}-${{ github.sha }}
       - name: See folder files
-        run: ls ~/front/public
+        run: ls
       - name: Deploy to Github Pages
         uses: cpina/github-action-push-to-another-repository@main
         env:
