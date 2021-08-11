@@ -20,19 +20,17 @@ jobs:
         path: ~/.yarn
         key: ${{ runner.os }}-build-${{ env.cache-name }}-new-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
           ${{ runner.os }}-build-
           ${{ runner.os }}-
     - run: yarn
     - run: yarn build
     - run: ls -l
     - name: Deploy to Github Pages
-      uses: cpina/github-action-push-to-another-repository@main
+      uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
       with:
-        source-directory: '/home/runner/work/portafolio/portafolio/front/public'
-        destination-github-username: 'Japsz'
-        destination-repository-name: 'japsz.github.io'
-        user-email: benjamin.meneses.14@sansano.usm.cl
-        target-branch: main
+        source-file: 'public/*'
+        destination_repo: 'Japsz/japsz.github.io'
+        user_email: benjamin.meneses.14@sansano.usm.cl
+        user_name: 'Japsz'
