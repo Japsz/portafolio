@@ -28,13 +28,13 @@ jobs:
     - name: Modify public folder permissions
       run: chmod -R 755 ./public
     - run: ls -l
-
     - name: Deploy to Github Pages
+      working-directory: 'front/public'
       uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: front/public/**
+        source_file: ./
         destination_repo: 'japsz/japsz.github.io'
         user_email: benjamin.meneses.14@sansano.usm.cl
         user_name: 'japsz'
