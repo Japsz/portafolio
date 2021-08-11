@@ -24,7 +24,10 @@ jobs:
           ${{ runner.os }}-
     - run: yarn
     - run: yarn build
+    - name: Modify public folder permissions
+      run: chmod -R 755 public
     - run: ls -l
+
     - name: Deploy to Github Pages
       uses: dmnemec/copy_file_to_another_repo_action@main
       env:
