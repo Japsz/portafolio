@@ -31,7 +31,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'front/public/'
+        source_file: front/public/.
         destination_repo: 'japsz/japsz.github.io'
         user_email: benjamin.meneses.14@sansano.usm.cl
         user_name: 'japsz'
