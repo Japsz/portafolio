@@ -18,7 +18,7 @@ jobs:
         cache-name: cache-node-modules
       with:
         # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: node_modules
+        path: ./node_modules
         key: ${{ runner.os }}-build-${{ env.cache-name }}-v3-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-build-${{ env.cache-name }}-
@@ -26,39 +26,13 @@ jobs:
           ${{ runner.os }}-
     - run: yarn
     - run: yarn build
-    - name: Cache build
-      uses: actions/cache@v2
+    - name: Deploy to Github Pages
+      uses: cpina/github-action-push-to-another-repository@main
       env:
-        cache-name: cache-build
+        API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: public
-        key: ${{ env.cache-name }}-${{ github.sha }}
-  deploy:
-    needs: build
-    environment: deployment
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Cache build
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-build
-        with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: public
-          key: ${{ env.cache-name }}-${{ github.sha }}
-      - name: See base folder files
-        run: ls ~/
-      - name: See folder files
-        run: ls 
-      - name: Deploy to Github Pages
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: './public'
-          destination-github-username: 'Japsz'
-          destination-repository-name: 'japsz.github.io'
-          user-email: benjamin.meneses.14@sansano.usm.cl
-          target-branch: main
+        source-directory: './public'
+        destination-github-username: 'Japsz'
+        destination-repository-name: 'japsz.github.io'
+        user-email: benjamin.meneses.14@sansano.usm.cl
+        target-branch: main
