@@ -18,7 +18,7 @@ jobs:
         cache-name: cache-node-modules
       with:
         path: ~/.yarn
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-new-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-v10-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-build-
           ${{ runner.os }}-
@@ -30,7 +30,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
       with:
-        source-file: 'public/*'
+        source-file: 'public'
         destination_repo: 'Japsz/japsz.github.io'
         user_email: benjamin.meneses.14@sansano.usm.cl
         user_name: 'Japsz'
