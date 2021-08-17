@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: deployment
     steps:
+    # Acá se baja el repo en la rama que se pushó
     - uses: actions/checkout@v2
+    # Se cachea el node modules
     - name: Cache node modules
       uses: actions/cache@v2
       env:
