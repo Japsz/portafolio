@@ -12,4 +12,4 @@ Bootstrapped using NestJs CLI, it uses Firebase Realtime Database to handle chat
 
 ## Continuous Delivery
 
-TODO
+Este Repositorio está con CI en Github Actions y se hacen push a <code>master</code> para el repo <a href="https://github.com/japsz/japsz.github.io" rel=norefer>Japsz/japsz.github.io</a> y se muestre en <a href="https://japsz.github.io" rel=norefer>Github Pages</a>
