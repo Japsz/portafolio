@@ -3,6 +3,7 @@
 header {
     font-family: $font-logo;
     font-size: 1.5rem;
+    z-index: 2;
     box-shadow: 0 0 0.5rem 0.2rem transparentize($primary, 0.5);
     .nav {
         display: flex;

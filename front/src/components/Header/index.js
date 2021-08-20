@@ -14,6 +14,12 @@ const Header = ({ siteTitle }) => (
         <span>BM</span>
         {siteTitle}
       </Link>
+      <Link
+        to="/portafolio"
+        className="nav-link active font-weight-bold"
+      >
+        Proyectos
+      </Link>
     </div>
   </header>
 )

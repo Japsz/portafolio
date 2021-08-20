@@ -10,8 +10,30 @@ $font-family-base: 'Poiret One';
 $font-size-base: 2rem;
 $link-color: $primary;
 $body-bg: #ede6f2b7;
-
+$carousel-transition-duration: .2s;
+$carousel-control-width: 15%;
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+.carousel-inner {
+    min-height: 200px;
+}
+// Carousel custom styles
+.carousel-item {
+    width: 100% - 2*$carousel-control-width;
+    background-color: #f2edf5;
+    margin-right: 0px;
+    &.active,
+    &.carousel-item-next.carousel-item-start,
+    &.carousel-item-prev.carousel-item-end {
+        margin-left: $carousel-control-width;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        height: 100%;
+    }
+}
 
 $font-logo: 'Amatic SC';
