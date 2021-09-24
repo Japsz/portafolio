@@ -3,9 +3,9 @@
 
 // 2. Include any default variable overrides here
 $primary: #086375 !default;
-$secondary: #FFBF46 ;
-$danger: #EF767A;
-$warning: #FFE347;
+$secondary: #A8DADC ;
+$danger: #C14953;
+$warning: #FFF689;
 $font-family-base: 'Poiret One';
 $font-size-base: 2rem;
 $link-color: $primary;
@@ -15,6 +15,9 @@ $carousel-control-width: 15%;
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
+body {
+    overflow-x: hidden;
+}
 .carousel-inner {
     min-height: 200px;
 }
@@ -26,6 +29,7 @@ $carousel-control-width: 15%;
     &.active,
     &.carousel-item-next.carousel-item-start,
     &.carousel-item-prev.carousel-item-end {
+        z-index: -1 !important;
         margin-left: $carousel-control-width;
         display: flex;
         flex-direction: column;

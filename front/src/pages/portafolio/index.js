@@ -9,7 +9,7 @@ const Proyectos = () => {
             <div className="row">
                 <div id="portfolioCarousel" className="carousel slide carousel-fade" data-bs-interval="false">
                     <div className="carousel-inner">
-                        <div class="carousel-item active">
+                        <div className="carousel-item active">
                             <StaticImage
                                 src="../../images/brand/observa.png"
                                 width={200}
@@ -36,7 +36,7 @@ const Proyectos = () => {
                         </div>
                         <div className="carousel-item">
                             <StaticImage
-                                src="../../images/brand/Siderval.logo"
+                                src="../../images/brand/Siderval.png"
                                 width={200}
                                 quality={95}
                                 formats={["AUTO", "WEBP", "AVIF"]}
@@ -54,7 +54,6 @@ const Proyectos = () => {
                     </button>
                 </div>
             </div>
-
         </Layout>
 
     );
