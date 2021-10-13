@@ -6,9 +6,10 @@ const AvatarSelector = (props) => {
     const {selected, setSelected} = props
     return (
         <div className="row my-4">
-            <label className="mb-2">Avatar</label>
+            <span className="mb-2">Avatar</span>
             <div className="col-6 col-sm-3 d-flex justify-content-center">
                 <StaticImage
+                    onClick={() => setSelected("one.png")} role="button" tabIndex={0}
                     src="../../../../images/avatars/one.png"
                     width={74}
                     className={`rounded-circle ${selected === 1 && 'active'}`}
@@ -19,6 +20,7 @@ const AvatarSelector = (props) => {
             </div>
             <div className="col-6 col-sm-3 d-flex justify-content-center">
                 <StaticImage
+                    onClick={() => setSelected("two.png")} role="button" tabIndex={-1}
                     src="../../../../images/avatars/two.png"
                     width={74}
                     className={`rounded-circle ${selected === 2 && 'active'}`}

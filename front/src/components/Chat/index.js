@@ -3,7 +3,7 @@ import ChatJoin from './Join';
 import ChatRoom from './Room';
 
 const Chat = () => {
-    const [credential, setCredentials] = useState(() => localStorage.getItem('chatJWT'))
+    const [credential, setCredentials] = useState(() => { return "global.localStorage.getItem('chatJWT')"})
     const [connected, setConnected] = useState(false)
     return (
         <div className="container p-5">

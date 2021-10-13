@@ -48,7 +48,7 @@ const IndexPage = () => (
         </p>  
       </div>
     </div>
-    <div className="row bg-primary">
+    <div className="row bg-white">
       <Chat/>
     </div>
   </Layout>
