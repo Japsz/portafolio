@@ -22,7 +22,7 @@ export type OctokitRequestResponse = {
 export class AppService {
   private octokitHandler: Octokit;
   constructor(){
-    this.octokitHandler = new Octokit({ auth: `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` });
+    this.octokitHandler = new Octokit({ auth: process.env.GITHUB_SECRET_TOKEN });
   }
   getHello(): string {
     return 'Hello World!';
