@@ -2,6 +2,7 @@ import * as React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import StackOverflow from "../components/SO"
+import Chat from '../components/Chat'
 import '../components/main.scss'
 import {StaticImage} from "gatsby-plugin-image"
 const IndexPage = () => (
@@ -48,6 +49,7 @@ const IndexPage = () => (
       </div>
     </div>
     <div className="row bg-primary">
+      <Chat/>
     </div>
   </Layout>
 )

@@ -1,9 +1,9 @@
 import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
+export const avatars = ['one.png', 'two.png', 'three.png', 'four.png']
 
 const AvatarSelector = (props) => {
     const {selected, setSelected} = props
-    
     return (
         <div className="row my-4">
             <label className="mb-2">Avatar</label>
@@ -47,7 +47,6 @@ const AvatarSelector = (props) => {
                     alt="My face"
                 />
             </div>
-            
         </div>
     );
 };

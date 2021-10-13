@@ -5,5 +5,5 @@
  */
 
 // You can delete this file if you're not using it
-import "@popperjs/core/dist/umd/popper.min"
-import "bootstrap/dist/js/bootstrap.min"
+import "bootstrap/dist/js/bootstrap.min.js"
+import "@popperjs/core/dist/esm/popper.js"
