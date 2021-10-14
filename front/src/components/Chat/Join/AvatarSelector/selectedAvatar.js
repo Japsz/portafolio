@@ -1,20 +1,26 @@
 import React from 'react';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const SelectedAvatar = ({selected, data}) => {
-    const selectedAvatar =  data.allFile.nodes.find(({base: originalName}) => originalName === selected)
-    const image = getImage(selectedAvatar.childImageSharp)
-    console.log(selected)
     return (
-        <GatsbyImage
-            height={74}
-            width={74}
-            image={image}
-            alt="your avatar"
-            className="rounded-circle"
-            quality={95}
-            formats={["AUTO", "WEBP", "AVIF"]}        
-        />
+        <div className="d-flex flex-column align-items-center justify-content-center">
+            {data.allFile.nodes.map(({base, name, childImageSharp: {gatsbyImageData}}) => {
+                return (
+                    selected === base ?
+                    <div key={`s-${name}`}>
+                        <GatsbyImage
+                            image={gatsbyImageData}
+                            className='rounded-circle'
+                            aria-hidden={selected === base}
+                            alt={name}
+                            key={name}
+                            width={74}
+                            quality={95}
+                        />
+                    </div> : null
+                )
+            })}
+        </div>
     );
 };
 
