@@ -10,7 +10,13 @@ env:
   AWS_PLATFORM: node.js
   PIPELINE_ID: ${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - 'backend/**'
+      - '!backend/nest-cli.json'
+      - '!backend/README.md'
+      - '.github/workflows/awsBackend.yml'
 defaults:
   run:
     working-directory: ./backend
@@ -47,15 +53,39 @@ jobs:
   deploy_aws:
     needs: [build]
     runs-on: ubuntu-latest
+    environment: deployment
     steps:
       - name: Download backend bundle
         uses: actions/download-artifact@v2
         with:
           name: build-bundle
           path: backend/
-      - name: ver
-        run: ls
       - name: Unzip bundle
         run: unzip ${{env.APP_NAME}}.zip
       - name: Remove zip artifact
         run: rm -f ${{env.APP_NAME}}.zip
+      - name: Check up on files
+        run: ls -l
+      - name: Set up Python 3.6 (needed for eb cli)
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.6"
+      - name: Configure AWS credentials 
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      - run: |
+          AWS_VERSION_LABEL=${{env.APP_NAME}}-${{env.PIPELINE_ID}}
+
+          echo "Installing Elastic Beanstalk Cli"
+          python -m pip install --upgrade pip
+          pip install awsebcli --upgrade
+          eb --version
+
+          echo "Deploy init"
+          eb init ${{env.APP_NAME}} -p ${{env.AWS_PLATFORM}} --region ${{env.AWS_REGION}}
+          eb use ${{env.ENV_NAME}}
+          eb deploy
+          echo "Deploy finished"
