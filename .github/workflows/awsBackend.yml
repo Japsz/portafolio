@@ -84,7 +84,7 @@ jobs:
           eb --version
       - name: EB CLI init
         run: |
-          eb init "${{env.APP_NAME}}" -p "${{env.AWS_PLATFORM}}"" --region ${{env.AWS_REGION}}
+          eb init "${{env.APP_NAME}}" -p "${{env.AWS_PLATFORM}}" --region ${{env.AWS_REGION}}
           eb use "${{env.ENV_NAME}}"
       - name: EB CLI deploy
         run: eb deploy
