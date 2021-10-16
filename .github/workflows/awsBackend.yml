@@ -1,0 +1,59 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: AWS ElasticBeanstalk Deployment
+
+env:
+  APP_NAME: portafolio
+  ENV_NAME: Portafolio-env
+  AWS_REGION: us-east-2
+  AWS_PLATFORM: node.js
+  PIPELINE_ID: ${GITHUB_RUN_ID}-${GITHUB_RUN_NUMBER}
+
+on: [push, pull_request]
+defaults:
+  run:
+    working-directory: ./backend
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: deployment
+    steps:
+    # Acá se baja el repo en la rama que se pushó
+    - uses: actions/checkout@v2
+    # Se cachea el node modules
+    - name: Cache node modules
+      uses: actions/cache@v2
+      env:
+        cache-name: node-modules
+      with:
+        path: backend/node_modules
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+    - run: yarn
+    - run: yarn build
+    - run: ls -l
+    - name: Create Backend Bundle
+      run: |
+        zip -r ${{env.APP_NAME}}.zip ./node_modules ./dist package.json
+    - name: Upload build-bundle
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-bundle
+        path: |
+          backend/node_modules
+          backend/dist
+          backend/package.json
+          backend/.ebextensions
+          backend/.platform
+  deploy_aws:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download backend bundle
+        uses: actions/download-artifact@v2
+        with:
+          name: build-bundle
+      - run: ls -l

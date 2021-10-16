@@ -13,7 +13,7 @@ async function bootstrap() {
     databaseURL: "https://gatsby-portfolio-c8fd3-default-rtdb.firebaseio.com",
   });
   app.enableCors({
-    origin: ['http://localhost:8000', 'https://japsz.github.io']
+    origin: ['http://localhost:8000', 'https://japsz.github.io', 'https://www.bmeneses.io']
   })
   await app.listen(3000);
 }
