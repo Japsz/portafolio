@@ -76,16 +76,15 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
-      - run: |
-          AWS_VERSION_LABEL=${{env.APP_NAME}}-${{env.PIPELINE_ID}}
-
+      - name: Install AWS EB CLI
+        run: |
           echo "Installing Elastic Beanstalk Cli"
           python -m pip install --upgrade pip
           pip install awsebcli --upgrade
           eb --version
-
-          echo "Deploy init"
-          eb init ${{env.APP_NAME}} -p ${{env.AWS_PLATFORM}} --region ${{env.AWS_REGION}}
-          eb use ${{env.ENV_NAME}}
-          eb deploy
-          echo "Deploy finished"
+      - name: EB CLI init
+        run: |
+          eb init "${{env.APP_NAME}}" -p "${{env.AWS_PLATFORM}}"" --region ${{env.AWS_REGION}}
+          eb use "${{env.ENV_NAME}}"
+      - name: EB CLI deploy
+        run: eb deploy
