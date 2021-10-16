@@ -3,7 +3,12 @@
 
 name: Github Pages Deployment
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - 'front/**'
+      - '!front/README.md'
+      - '.github/workflows/ghPages.yml'
 defaults:
   run:
     working-directory: ./front
