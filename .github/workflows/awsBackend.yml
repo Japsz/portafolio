@@ -43,11 +43,7 @@ jobs:
       with:
         name: build-bundle
         path: |
-          backend/node_modules
-          backend/dist
-          backend/package.json
-          backend/.ebextensions
-          backend/.platform
+          backend/${{env.APP_NAME}}.zip
   deploy_aws:
     needs: [build]
     runs-on: ubuntu-latest
@@ -56,4 +52,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build-bundle
+      - name: Unzip bundle
+        run: unzip ${{env.APP_NAME}}.zip
+      - name: Remove zip artifact
+        run: rm -f ${{env.APP_NAME}}.zip
       - run: ls -l
