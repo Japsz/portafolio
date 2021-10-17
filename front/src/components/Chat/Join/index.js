@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import AvatarSelector, { avatars } from './AvatarSelector';
 import SelectedAvatar from './AvatarSelector/selectedAvatar';
-
-const ChatJoin = (props) => {
-    const [form, setForm] = useState(() => ({ avatar: avatars[Math.floor(Math.random() * 4)], username: '' }))
+import {setUser} from '../FirebaseWrapper/auth'
+import * as axios from 'axios'
+const ChatJoin = ({setCredentials, credential}) => {
+    const [form, setForm] = useState(() => {
+        console.log({credential})
+        if(!!credential) {
+            return { avatar: credential.icon, username: credential.username}
+        }
+        return ({ avatar: avatars[Math.floor(Math.random() * 4)], username: '' })
+    })
     const data = useStaticQuery(graphql`
     query AvatarsQuery {
       allFile(filter: {base: {in:["one.png", "two.png", "three.png", "four.png"]}}) {
@@ -19,7 +26,10 @@ const ChatJoin = (props) => {
     }`)
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log({ form })
+        axios.post("http://api.bmeneses.io/chat/join",{icon: form.avatar, username: form.username}).then(res => {
+            setUser(res.data)
+            setCredentials(res.data)
+        })
     }
     const isUsernameValid = /^[a-zA-Z0-9]{3,10}$/i.test(form.username)
     return (
@@ -34,6 +44,7 @@ const ChatJoin = (props) => {
                             id="username"
                             name="username"
                             placeholder="Username"
+                            value={form.username}
                             onChange={(e) => setForm({
                                 ...form,
                                 [e.target.name]: e.target.value,

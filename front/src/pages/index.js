@@ -41,7 +41,7 @@ const IndexPage = () => (
     <div className="row">
       <div className="container px-5 pt-5 d-flex flex-column align-items-start">
         <p className="text-primary container">
-          <h2 className="h2">Hello!</h2>
+          <span className="h2">Hello!</span><br/>
           I'm Benjamín Meneses, born in Santiago, Chile. I've been doing FS Development since i learnt how to in 2015 while studying Computer Science at <a href="https://www.usm.cl/" target="_blank" rel="noreferrer">UTFSM</a>.
           <br/>
           My learning journey has always been towards improving how fast and memory-efficient my code is, as to finding new ways to make it consistent using different toolings and methods of Deployments.
