@@ -6,7 +6,7 @@ const Chat = () => {
     const [credential, setCredentials] = useState(() => { return getUser()})
     return (
         <div className="container p-5">
-            {isLoggedIn() ? <ChatJoin credential={credential} setCredentials={setCredentials}/> : <ChatRoom/>}
+            {!isLoggedIn() ? <ChatJoin credential={credential} setCredentials={setCredentials}/> : <ChatRoom/>}
         </div>
     );
 };
