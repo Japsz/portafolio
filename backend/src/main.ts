@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 // Import firebase-admin
 import * as admin from 'firebase-admin';
+import { Request, Response, NextFunction } from 'express';
 
 async function bootstrap() {
   // Set the config options
@@ -18,6 +19,12 @@ async function bootstrap() {
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
     }
   });
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    console.log("===========Starting Request from %s ===========", req.hostname)
+    console.log(res.getHeaders())
+    console.log("===========================")
+    next()
+  })
   await app.listen(3000);
 }
 bootstrap();
