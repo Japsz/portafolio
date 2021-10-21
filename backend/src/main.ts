@@ -22,8 +22,10 @@ async function bootstrap() {
   // Logger
   app.use((req: Request, res: Response, next: NextFunction) => {
     console.log("===========Starting Request from %s ===========", req.hostname)
-    console.log(req.ip)
-    console.log(req.url)
+    console.log("IP: ",req.ip)
+    console.log("path: ",req.originalUrl)
+    console.log("method: ",req.method)
+    console.log(req.route)
     console.log("===========================")
     if(req.method === 'OPTIONS') {
       res.sendStatus(204)
