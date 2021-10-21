@@ -15,6 +15,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
       origin: ['http://localhost:8000', 'https://japsz.github.io', /\.bmeneses\.io$/],
+      credentials: true,
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
     }
   });
   app.use((req: Request, res: Response, next: NextFunction) => {
