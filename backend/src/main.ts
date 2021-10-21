@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 // Import firebase-admin
 import * as admin from 'firebase-admin';
 import { Request, Response, NextFunction } from 'express';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
   // Set the config options
@@ -12,7 +13,9 @@ async function bootstrap() {
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://gatsby-portfolio-c8fd3-default-rtdb.firebaseio.com",
   });
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  // Trust Nginx proxy
+  app.set('trust proxy', 1);
   app.enableCors({
     origin: ['http://localhost:8000', 'https://japsz.github.io', 'https://bmeneses.io', 'https://www.bmeneses.io'],
   })
