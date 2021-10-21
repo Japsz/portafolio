@@ -16,17 +16,20 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   // Trust Nginx proxy
   app.set('trust proxy', 1);
+  app.enableCors({
+    origin: ['https://japsz.github.io', 'https://bmeneses.io', 'https://www.bmeneses.io'],
+  })
   // Logger
   app.use((req: Request, res: Response, next: NextFunction) => {
     console.log("===========Starting Request from %s ===========", req.hostname)
     console.log(req.ip)
     console.log(req.url)
     console.log("===========================")
-    next()
+    if(req.method === 'OPTIONS') {
+      res.sendStatus(204)
+    } else next()
   })
-  app.enableCors({
-    origin: ['https://japsz.github.io', 'https://bmeneses.io', 'https://www.bmeneses.io'],
-  })
+
   await app.listen(8080);
 }
 bootstrap();
