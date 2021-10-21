@@ -7,7 +7,7 @@ import * as axios from 'axios'
 const ChatJoin = ({setCredentials, credential}) => {
     const [form, setForm] = useState(() => {
         console.log({credential})
-        if(!!credential) {
+        if(credential.username) {
             return { avatar: credential.icon, username: credential.username}
         }
         return ({ avatar: avatars[Math.floor(Math.random() * 4)], username: '' })
@@ -26,7 +26,7 @@ const ChatJoin = ({setCredentials, credential}) => {
     }`)
     const onSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://api.bmeneses.io/chat/join",{icon: form.avatar, username: form.username}).then(res => {
+        axios.post("https://api.bmeneses.io/chat/join",{icon: form.avatar, username: form.username}).then(res => {
             setUser(res.data)
             setCredentials(res.data)
         })
