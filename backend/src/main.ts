@@ -12,18 +12,17 @@ async function bootstrap() {
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://gatsby-portfolio-c8fd3-default-rtdb.firebaseio.com",
   });
-  const app = await NestFactory.create(AppModule, {
-    cors: {
-      origin: ['http://localhost:8000', 'https://japsz.github.io', /\.bmeneses\.io$/],
-      credentials: true,
-      methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
-    }
-  });
+  const app = await NestFactory.create(AppModule);
   app.use((req: Request, res: Response, next: NextFunction) => {
     console.log("===========Starting Request from %s ===========", req.hostname)
     console.log(res.getHeaders())
     console.log("===========================")
     next()
+  })
+  app.enableCors({
+    origin: ['http://localhost:8000', 'https://japsz.github.io', /\.bmeneses\.io$/],
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
   })
   await app.listen(8080);
 }
