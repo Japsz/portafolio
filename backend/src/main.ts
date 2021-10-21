@@ -22,9 +22,10 @@ async function bootstrap() {
     console.log(req.ip)
     console.log(req.url)
     console.log("===========================")
+    next()
   })
   app.enableCors({
-    origin: ['http://localhost:8000', 'https://japsz.github.io', 'https://bmeneses.io', 'https://www.bmeneses.io'],
+    origin: ['https://japsz.github.io', 'https://bmeneses.io', 'https://www.bmeneses.io'],
   })
   await app.listen(8080);
 }
