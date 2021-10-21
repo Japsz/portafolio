@@ -13,13 +13,6 @@ async function bootstrap() {
     databaseURL: "https://gatsby-portfolio-c8fd3-default-rtdb.firebaseio.com",
   });
   const app = await NestFactory.create(AppModule);
-  app.use((req: Request, res: Response, next: NextFunction) => {
-    console.log("===========Starting Request from %s ===========", req.hostname)
-    console.log(req.ip)
-    console.log(req.url)
-    console.log("===========================")
-    next()
-  })
   app.enableCors({
     origin: ['http://localhost:8000', 'https://japsz.github.io', 'https://bmeneses.io', 'https://www.bmeneses.io'],
   })
