@@ -15,14 +15,13 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use((req: Request, res: Response, next: NextFunction) => {
     console.log("===========Starting Request from %s ===========", req.hostname)
-    console.log(res.getHeaders())
+    console.log(req.ip)
+    console.log(req.url)
     console.log("===========================")
     next()
   })
   app.enableCors({
-    origin: ['http://localhost:8000', 'https://japsz.github.io', /\.bmeneses\.io$/],
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
+    origin: ['http://localhost:8000', 'https://japsz.github.io', 'https://bmeneses.io', 'https://www.bmeneses.io'],
   })
   await app.listen(8080);
 }
