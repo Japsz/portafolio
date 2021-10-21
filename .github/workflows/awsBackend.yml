@@ -43,7 +43,7 @@ jobs:
     - run: ls -l
     - name: Create Backend Bundle
       run: |
-        zip -r ${{env.APP_NAME}}.zip ./node_modules ./dist package.json .ebextensions
+        zip -r ${{env.APP_NAME}}.zip ./node_modules ./dist package.json .ebextensions .platform
     - name: Upload build-bundle
       uses: actions/upload-artifact@v2
       with:
