@@ -14,11 +14,7 @@ async function bootstrap() {
     databaseURL: "https://gatsby-portfolio-c8fd3-default-rtdb.firebaseio.com",
   });
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  // Trust Nginx proxy
-  app.set('trust proxy', 1);
-  app.enableCors({
-    origin: ['https://japsz.github.io/', 'https://bmeneses.io/', 'https://www.bmeneses.io/', 'http://localhost:8000/'],
-  })
+
   // Logger
   app.use((req: Request, res: Response, next: NextFunction) => {
     console.log("===========Starting Request from %s ===========", req.hostname)
@@ -27,9 +23,12 @@ async function bootstrap() {
     console.log("method: ",req.method)
     console.log(req.route)
     console.log("===========================")
-    if(req.method === 'OPTIONS') {
-      res.sendStatus(204)
-    } else next()
+    next()
+  })
+  // Trust Nginx proxy
+  app.set('trust proxy', 1);
+  app.enableCors({
+    origin: ['https://japsz.github.io/', 'https://bmeneses.io/', 'https://www.bmeneses.io/', 'http://localhost:8000/'],
   })
 
   await app.listen(8080);
