@@ -8,6 +8,7 @@
     "@popperjs/core": "^2.9.3",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
+    "bootstrap-icons": "^1.7.1",
     "firebase": "^8.10.0",
     "gatsby": "^3.10.2",
     "gatsby-plugin-gatsby-cloud": "^2.10.0",
@@ -25,6 +26,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-jupyter-notebook": "^0.3.2",
     "sass": "^1.37.2"
   },
   "devDependencies": {

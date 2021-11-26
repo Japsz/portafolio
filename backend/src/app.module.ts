@@ -3,9 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ChatController } from './chat/chat.controller';
 import { ChatModule } from './chat/chat.module';
+import { GithubModule } from './github/github.module';
 
 @Module({
-  imports: [ChatModule],
+  imports: [ChatModule, GithubModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -17,7 +17,7 @@ async function bootstrap() {
   // Trust Nginx proxy
   app.set('trust proxy', 1);
   app.enableCors({
-    origin: ['https://japsz.github.io', 'https://bmeneses.io', 'https://www.bmeneses.io'],
+    origin: ['https://japsz.github.io/', 'https://bmeneses.io/', 'https://www.bmeneses.io/', 'http://localhost:8000/'],
   })
   // Logger
   app.use((req: Request, res: Response, next: NextFunction) => {

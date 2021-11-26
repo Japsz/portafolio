@@ -1,3 +1,7 @@
+// Se configuran las variables de entorno para el sitio
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 module.exports = {
   siteMetadata: {
     title: `Benjamín Meneses`,

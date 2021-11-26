@@ -1,0 +1,56 @@
+@import "../main.scss";
+
+.accordion-rounded {
+    .accordion-item{
+        border: 0;
+        border-radius: 16px !important;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        .accordion-header {
+            .accordion-button {
+                &.collapsed {
+                    border-radius: 16px;
+                    &:hover {
+                        background-color: transparentize($primary, .9);
+                        color: $primary;
+                    }
+                }
+                &:not(.collapsed) {
+                    border-radius: 16px;
+                    border-bottom-right-radius: 0;
+                    border-bottom-left-radius: 0;
+                    &::after {
+                      background-image: escape-svg($accordion-button-active-icon);
+                      transform: $accordion-icon-transform;
+                    }
+                }
+                &.accordion-github {
+                    &::after {
+                        background-image: url("../../../node_modules/bootstrap-icons/icons/github.svg");
+                    }
+                }
+                &.accordion-notebook {
+                    &::after {
+                        background-image: url("../../../node_modules/bootstrap-icons/icons/display.svg");
+                    }
+                }
+                &.accordion-github, &.accordion-notebook{
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+        .accordion-body {
+            padding: 0.5rem 0.625rem;
+        }
+        @include media-breakpoint-up(sm) {
+            .accordion-body {
+                padding: 1rem 1.25rem;
+            }
+        }
+        &:hover {
+            box-shadow: 3px 1px 6px transparentize($primary, .8);
+        }
+    }
+}
