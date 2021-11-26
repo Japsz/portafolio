@@ -1,5 +1,6 @@
 import React from 'react';
 import {StaticImage} from 'gatsby-plugin-image';
+import "./styles.scss"
 const Carousel = props => {
     return (
         <div id="portfolioCarousel" className="carousel slide carousel-fade" data-bs-interval="false">
@@ -31,7 +32,7 @@ const Carousel = props => {
                 </div>
                 <div className="carousel-item">
                     <StaticImage
-                        src="../images/brand/Siderval.png"
+                        src="../images/brand/siderval.png"
                         width={200}
                         quality={95}
                         formats={["AUTO", "WEBP", "AVIF"]}

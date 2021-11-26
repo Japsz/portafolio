@@ -51,27 +51,7 @@ body {
     overflow-x: hidden;
     background-color: $body-bg;
 }
-.carousel-inner {
-    min-height: 200px;
-}
-// Carousel custom styles
-.carousel-item {
-    width: 100% - 2*$carousel-control-width;
-    background-color: #f2edf5;
-    margin-right: 0px;
-    &.active,
-    &.carousel-item-next.carousel-item-start,
-    &.carousel-item-prev.carousel-item-end {
-        z-index: -1 !important;
-        margin-left: $carousel-control-width;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        height: 100%;
-    }
-}
+
 .selectedAvatar {
     .rounded-circle {
         outline: 5px solid $primary;
