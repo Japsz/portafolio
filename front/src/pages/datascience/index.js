@@ -3,6 +3,8 @@ import Seo from '../../components/seo';
 import Layout from '../../components/layout';
 import DirectoryTree from '../../components/DirectoryTree';
 import api from '../../utils/api';
+import NavigatorContext from '../../components/DirectoryTree/NavigatorContext';
+
 const DataScience = props => {
     const [paths, setPaths] = React.useState({});
     const [loading, setLoading] = React.useState(true);
@@ -34,12 +36,20 @@ const DataScience = props => {
                     </p>
                 </div>
                 <div className="row mt-2">
-                    <a href="https://github.com/Japsz/DesafioLatam" target="_blank" rel="noreferrer">
-                        <h5 className="font-logo"><i className="bi bi-github me-2" />DesafíoLatam</h5>
-                    </a>
-                    {
-                        loading ? <div className="d-flex justify-content-center"><div className="spinner-border m-5 text-primary" role="status" /></div> : <DirectoryTree paths={paths} />
-                    }
+                    <h5 className="font-logo">
+                        <a href="https://github.com/Japsz/DesafioLatam" target="_blank" rel="noreferrer">
+                            <i className="bi bi-github me-2" />DesafíoLatam
+                        </a>
+                    </h5>
+                    <NavigatorContext.Provider value={{ 'navigate': props.navigate }}>
+                        {
+                            loading ?
+                                <div className="d-flex justify-content-center">
+                                    <div className="spinner-border m-5 text-primary" role="status" />
+                                </div>
+                                : <DirectoryTree paths={paths} />
+                        }
+                    </NavigatorContext.Provider>
                 </div>
             </div>
         </Layout>

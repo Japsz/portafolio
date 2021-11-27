@@ -7,14 +7,14 @@ const Carousel = props => {
             <div className="carousel-inner">
                 <div className="carousel-item active">
                     <StaticImage
-                        src="../images/brand/observa.png"
+                        src="../../images/brand/observa.png"
                         width={200}
                         quality={95}
                         formats={["AUTO", "WEBP", "AVIF"]}
                         alt="Observa Ciudadanía"
                     />
                     <StaticImage
-                        src="../images/brand/proyecta.png"
+                        src="../../images/brand/proyecta.png"
                         width={200}
                         quality={95}
                         formats={["AUTO", "WEBP", "AVIF"]}
@@ -23,7 +23,7 @@ const Carousel = props => {
                 </div>
                 <div className="carousel-item">
                     <StaticImage
-                        src="../images/brand/Gojump.png"
+                        src="../../images/brand/Gojump.png"
                         width={200}
                         quality={95}
                         formats={["AUTO", "WEBP", "AVIF"]}
@@ -32,7 +32,7 @@ const Carousel = props => {
                 </div>
                 <div className="carousel-item">
                     <StaticImage
-                        src="../images/brand/siderval.png"
+                        src="../../images/brand/siderval.png"
                         width={200}
                         quality={95}
                         formats={["AUTO", "WEBP", "AVIF"]}

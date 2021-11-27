@@ -24,13 +24,9 @@ const JupyterHeader = ({ path, back }) => {
                             {path}
                         </li>
                         <li className="nav-item">
-                            <Link
-                                to="/"
-                                className="nav-link"
-                                activeClassName="active"
-                            >
+                            <a href={`https://github.com/japsz/DesafioLatam/tree/master/${encodeURIComponent(path)}`} className="nav-link">
                                 Ver en Github
-                            </Link>
+                            </a>
                         </li>
                         <li className="nav-item">
                             <Link

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import NavigatorContext from './NavigatorContext';
 const fileIcons = {
   'pdf': <i className="bi bi-file-pdf text-primary"/>,
   'ipynb': <i className="bi bi-journal-code text-primary"/>,
@@ -10,9 +10,12 @@ const fileIcons = {
 }
 const File = ({ path, name, extension, ...props }) => {
   const Icon = fileIcons[extension] || <i className="bi bi-file-earmark text-primary"/>
+  const {navigate} = React.useContext(NavigatorContext)
   const onClick = () => {
     if(extension !== 'ipynb') {
       window.open(`https://github.com/japsz/DesafioLatam/tree/master/${encodeURIComponent(path)}`, '_blank')
+    } else {
+      navigate(`/datascience/notebook/`, {state: {path, name}})
     }
   }
   return (
