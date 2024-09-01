@@ -6,7 +6,7 @@ import { ChatModule } from './chat/chat.module';
 import { GithubModule } from './github/github.module';
 
 @Module({
-  imports: [ChatModule, GithubModule],
+  imports: [/* ChatModule */, GithubModule],
   controllers: [AppController],
   providers: [AppService],
 })
