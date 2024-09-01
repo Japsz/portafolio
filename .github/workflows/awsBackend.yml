@@ -78,9 +78,8 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: Install AWS EB CLI
         run: |
-          echo "Installing Elastic Beanstalk Cli"
-          python -m pip install --upgrade pip
-          pip install awsebcli --upgrade
+          git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git ./ebcli
+          python ./ebcli/scripts/ebcli_installer.py
           eb --version
       - name: EB CLI init
         run: |
