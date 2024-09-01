@@ -66,7 +66,7 @@ jobs:
         run: rm -f ${{env.APP_NAME}}.zip
       - name: Check up on files
         run: ls -l
-      - name: Set up Python 3.6 (needed for eb cli)
+      - name: Set up Python 3.11.7 (needed for eb cli)
         uses: actions/setup-python@v5
         with:
           python-version: "3.11.7"
@@ -84,8 +84,10 @@ jobs:
         run: |
           git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git ./ebcli
           python ./ebcli/scripts/ebcli_installer.py
-          echo 'export PATH="/home/runner/.ebcli-virtual-env/executables:$PATH"' >> ~/.bash_profile && source ~/.bash_profile
-          eb --version
+      - name: Add EB CLI to PATH
+        run: echo 'export PATH="/home/runner/.ebcli-virtual-env/executables:$PATH"' >> ~/.bash_profile && source ~/.bash_profile
+      - name: Check EB CLI version
+        run: eb --version
       - name: EB CLI init
         run: |
           eb init "${{env.APP_NAME}}" -p "${{env.AWS_PLATFORM}}" --region ${{env.AWS_REGION}}
