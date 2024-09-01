@@ -84,6 +84,7 @@ jobs:
         run: |
           git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git ./ebcli
           python ./ebcli/scripts/ebcli_installer.py
+          echo 'export PATH="/home/runner/.ebcli-virtual-env/executables:$PATH"' >> ~/.bash_profile && source ~/.bash_profile
           eb --version
       - name: EB CLI init
         run: |
