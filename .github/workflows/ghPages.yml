@@ -8,7 +8,6 @@ on:
     paths:
       - 'front/**'
       - '!front/README.md'
-      - '.github/workflows/ghPages.yml'
 defaults:
   run:
     working-directory: ./front
@@ -18,10 +17,10 @@ jobs:
     environment: deployment
     steps:
     # Acá se baja el repo en la rama que se pushó
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     # Se cachea el node modules
     - name: Cache node modules
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       env:
         cache-name: node-modules
       with:
