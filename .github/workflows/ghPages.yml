@@ -39,11 +39,11 @@ jobs:
     - run: yarn build
     - run: ls -l
     - name: Deploy to Github Pages
-      uses: datacake/copy_file_to_another_repo_action@main
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      uses: peaceiris/actions-gh-pages@v4
       with:
-        source_file: front/public/.
-        destination_repo: 'japsz/japsz.github.io'
-        user_email: benjamin.meneses.14@sansano.usm.cl
+        personal_token: ${{ secrets.API_TOKEN_GITHUB }}
+        external_repository: japsz/japsz.github.io
+        publish_branch: main
+        publish_dir: ./front/public
         user_name: 'japsz'
+        user_email: benjamin.meneses.14@sansano.usm.cl
